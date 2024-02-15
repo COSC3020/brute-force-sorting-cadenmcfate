@@ -7,7 +7,7 @@ const test =
     jsc.forall("array nat", function(arr) {
         var a1 = JSON.parse(JSON.stringify(arr));
         var a2 = JSON.parse(JSON.stringify(arr));
-        var count = permutationSort(a1);
+        var count = permutationSort(a1,0);
         return count >= 0 && JSON.stringify(a1) == JSON.stringify(a2.sort(function(a, b) { return a - b; }));
     });
 jsc.assert(test);
