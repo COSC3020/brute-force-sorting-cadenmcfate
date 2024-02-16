@@ -1,4 +1,4 @@
-function permutationSort(a, lo) {
+function permSort(a, lo) {
     if (isSorted(a)) return 1;
     let attempts = 0;
     if (lo >= a.length-1) return 0;
@@ -6,8 +6,9 @@ function permutationSort(a, lo) {
 	if (i != lo) {
 	    swap(a,lo,i);
 	    attempts++;
+	    //console.log(a);
 	}
-	attempts += permutationSort(a, lo+1);
+	attempts += permSort(a, lo+1);
 	if (isSorted(a)) return attempts;
 	if (i != lo) swap(a,lo,i);
     }
@@ -28,8 +29,16 @@ function swap(a,lo,i) {
     return;
 }
 
-//console.log(permutationSort([2,3,1],0)); = 3!
-//console.log(permutationSort([2,3,4,1],0)); = 4!
-//console.log(permutationSort([2,3,4,5,1],0)); = 5!
-//console.log(permutationSort([2,3,4,5,6,1],0)); = 6!
-//console.log(permutationSort([2,3,4,5,6,7,8,9,1],0)); = 9!
+function permutationSort(a) {
+    //console.log(a);
+    return permSort(a,0);
+}
+
+
+
+//console.log(permutationSort([2,3,4,5,6,7,8,1]));
+//console.log(permutationSort([2,3,1])); = 3!
+//console.log(permutationSort([2,3,4,1])); = 4!
+//console.log(permutationSort([2,3,4,5,1])); = 5!
+//console.log(permutationSort([2,3,4,5,6,1])); = 6!
+//console.log(permutationSort([2,3,4,5,6,7,8,9,1])); = 9!
