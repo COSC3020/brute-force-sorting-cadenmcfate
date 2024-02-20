@@ -1,15 +1,16 @@
 function permSort(a, lo) {
-    if (isSorted(a)) return 1;
-    let attempts = 0;
-    if (lo >= a.length-1) return 0;
+    if (isSorted(a)) return [1,true];
+    let attempts = [0,false];
+    if (lo >= a.length-1) return [0,false];
     for (let i = lo; i < a.length; i++) {
 	if (i != lo) {
 	    swap(a,lo,i);
-	    attempts++;
+	    attempts[0]++;
 	    //console.log(a);
 	}
-	attempts += permSort(a, lo+1);
-	if (isSorted(a)) return attempts;
+	let newAttempts = permSort(a, lo+1);
+	attempts = [attempts[0]+newAttempts[0], newAttempts[1]];
+	if (attempts[1]) return attempts;
 	if (i != lo) swap(a,lo,i);
     }
     return attempts;
@@ -31,7 +32,7 @@ function swap(a,lo,i) {
 
 function permutationSort(a) {
     //console.log(a);
-    return permSort(a,0);
+    return permSort(a,0)[0];
 }
 
 
