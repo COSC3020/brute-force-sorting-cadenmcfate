@@ -27,14 +27,8 @@ most important part. Add your answer to this markdown file.
 // Removed the redundant call to the isSorted function within the main for loop to lower the runtime complexity. Return value for the permSort function is now [n,sorted] where n is the number of attempts/permutations that have been explored in the current function call, and sorted is a boolean value that denotes whether the array is sorted or not. Using this we can simply check if sorted is true instead of calling isSorted(a) whenever we want to check if we found the correct permutation.
 
 Finding the runtime complexity:
-At the beginning of each call of permutationSort there is a call of isSorted to check the permutation. The isSorted function has a complexity of $\Theta(n)$.
-During the first call of permutationSort, the primary for loop runs $n$ times. Within the for loop there is a swapping function that has constant complexity, a recursive call to permutationSort that will handle 1 less element, and other constant time operations. Combining this we get the recurrance relation:
 
-$$\begin{equation}T(n)=\begin{cases}1, & \text{if $n<=1$} \\
-n+n*T(n-1)+C, & \text{if $n>1$}.\end{cases}\end{equation}$$
-
-Ignoring the low order terms, we can observe that this relation works out to be $n(n-1)(n-2)...T(n-i)$.
-Thus, the highest order term will be $n!$; the runtime complexity of this algorithm is $\Theta(n!)$.
+To find the runtime complexity we can realize that there are $n!$ possible permutations of an array of length $n$. It takes constant time to generate a new permutation, and it takes $n$ time to check if the permutation is sorted using the isSorted function. Therefore the runtime complexity of this algorithm is $\Theta(n*n!)$.
 
 The best case input for this algorithm is an already sorted algorithm, which has a complexity of $\Theta(n)$ since the algorithm will be done after one iteration of the isSorted function.
 
